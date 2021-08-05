@@ -13,6 +13,8 @@ const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
+
+
 const getApiInfo = async () => {
     const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`);
     const apiInfo = await apiUrl.data.results.map(e => {
@@ -47,18 +49,13 @@ const getAllRecipes = async () => {
     return infoTotal;
 }
 
-router.get("/recipes", async (req, res) => {
-   /*  const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`);
-    res.status(200).send(apiUrl.data.results.map(e => {return {title: e.title, 
-        image: e.image, 
-         diets: e.diets.map(e => e),
-          summary: e.summary,
-          healthScore: e.healthScore,
-          rating: e.spoonacularScore }})) */
-   
-    
+//----------------->RUTAS<-------------------------------------------------------------------
 
-     const { title } = req.query;
+//1) Obtener un listado de las recetas que contengan la palabra ingresada como query parameter
+//   Si no existe ninguna receta mostrar un mensaje adecuado 
+
+router.get("/recipes", async (req, res) => {
+    const { title } = req.query;
     let recipesTotal = await getAllRecipes();
     if(title){
         let recipeName = await recipesTotal.filter( e => e.title.toLowerCase().includes(title.toLowerCase()))
@@ -69,5 +66,27 @@ router.get("/recipes", async (req, res) => {
         res.status(200).send(recipesTotal)
     } 
 })
+//2) GET /recipes/{idReceta}: ------- Obtener el detalle de una receta en particular
+//Debe traer solo los datos pedidos en la ruta de detalle de receta
+//Incluir los tipos de dieta asociados
+ 
+
+
+
+//3) GET /types:  -------- Obtener todos los tipos de dieta posibles   
+//En una primera instancia, cuando no exista ninguno, deberán precargar la base de datos con los tipos de datos indicados por spoonacular acá
+router.get("/types", async (req, res) => {
+    const dietas = await Diet.findAll();
+    res.json(dietas)
+})
+
+
+//4) POST /recipe: --------- Recibe los datos recolectados desde el formulario controlado de la ruta de creación de recetas por body
+//Crea una receta en la base de datos
+router.post("/creardieta", async (req, res) => {
+    const dietas = await Diet.create(req.body);
+    res.json(dietas)
+})
+
 
 module.exports = router;
