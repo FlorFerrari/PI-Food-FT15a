@@ -30,6 +30,7 @@ const getApiInfo = async () => {
     return apiInfo;
 }
 
+
 const getDbInfo = async () => {
     return await Recipe.findAll({
         include:{
@@ -77,15 +78,20 @@ router.get("/recipes", async (req, res) => {
 //En una primera instancia, cuando no exista ninguno, deberán precargar la base de datos con los tipos de datos indicados por spoonacular acá
 router.get("/types", async (req, res) => {
     const dietas = await Diet.findAll();
-    res.json(dietas)
+    res.status(200).send(dietas)
 })
 
 
 //4) POST /recipe: --------- Recibe los datos recolectados desde el formulario controlado de la ruta de creación de recetas por body
 //Crea una receta en la base de datos
-router.post("/creardieta", async (req, res) => {
-    const dietas = await Diet.create(req.body);
-    res.json(dietas)
+router.post("/recipe", async (req, res) => {
+    let { title, summary, rating, healthScore, steps, image, createdInDb, diet} = req.body
+    let recipeCreated = await Recipe.create ({title, summary, rating, healthScore, steps, image, createdInDb})
+    let dietDataBase = await Diet.findAll({
+        where: { name: diet}
+    })
+    recipeCreated.addDiet(dietDataBase)
+    res.send("Recipe has been created succesfully")
 })
 
 
