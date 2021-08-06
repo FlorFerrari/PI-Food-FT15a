@@ -68,6 +68,14 @@ router.get("/recipes", async (req, res) => {
         res.status(200).send(recipesTotal)
     } 
 })
+
+//RUTA EXTRA PARA TRAER RECETAS CREADAS PR EL USUARIO
+router.get("/myrecipes", async (req, res) => {
+    let recipes = await getDbInfo();
+    recipes.length ?
+    res.status(200).send(recipes) :
+    res.status(404).send("you didnt create a recipe yet!")
+})
 //2) GET /recipes/{idReceta}: ------- Obtener el detalle de una receta en particular
 //Debe traer solo los datos pedidos en la ruta de detalle de receta
 //Incluir los tipos de dieta asociados
