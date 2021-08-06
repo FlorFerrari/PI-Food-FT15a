@@ -19,6 +19,7 @@ const getApiInfo = async () => {
     const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`);
     const apiInfo = await apiUrl.data.results.map(e => {
         return {
+            id: e.id,
          title: e.title, 
           image: e.image, 
            diets: e.diets.map(e => e),
@@ -70,7 +71,17 @@ router.get("/recipes", async (req, res) => {
 //2) GET /recipes/{idReceta}: ------- Obtener el detalle de una receta en particular
 //Debe traer solo los datos pedidos en la ruta de detalle de receta
 //Incluir los tipos de dieta asociados
- 
+router.get("/recipes/:id", async (req, res) => {
+    const {id} = req.params;
+    const recipesTotal = await getAllRecipes();
+    
+    if(id){
+        let recipeId = await recipesTotal.filter(e => e.id == id)
+        recipeId.length?
+        res.status(200).json(recipeId) :
+        res.status(404).send("Recipe not found")
+    }
+})
 
 
 
