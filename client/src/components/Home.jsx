@@ -27,10 +27,11 @@ export default function Home() {
                 get all recipes
             </button>
             <div>
-                <select value="">Rating - Low to High</select>
-                <select value="">Rating - High to Low</select>
-                <select value="">A-Z</select>
-                <select value="">Z-A</select>
+                <div><select value="">Rating - Low to High</select></div>
+
+                <div><select value="">Rating - High to Low</select></div>
+                <div><select value="">A-Z</select></div>
+                <div><select value="">Z-A</select></div>
             </div>
             <div>
                 <select value="poner el mismo nombre que en la bse de datos">Gluten Free</select>
