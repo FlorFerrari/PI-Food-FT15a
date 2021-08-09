@@ -4,11 +4,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRecipes } from "../actions";
 import { Link } from "react-router-dom"
 import Card from "./Card";
+import Paginado from "./Paginado";
 
 export default function Home() {
 
     const dispatch = useDispatch();
     const allRecipes = useSelector((state) => state.recipes)
+    //paginado
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recipesPerPage, setRecipesPerPage] = useState(3);
+    const indexOfLastRecipe = currentPage * recipesPerPage
+    const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage
+    const currentRecipes = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe)
+
+    //ayuda al renderizado
+    const paginado = (pageNumer) => {
+        setCurrentPage(pageNumer)
+    }
 
     useEffect(() => {
         dispatch(getRecipes())
@@ -41,15 +53,25 @@ export default function Home() {
             <div>
                 <h5>Diet Type:</h5>
                 <select name="" id="">
-                    <option value="poner el mismo nombre que en la bse de datos">Gluten Free</option>
-                    <option value="">Ketogenic</option>
+                    <option value="all">All</option>
+                    <option value="gluten free">Gluten Free</option>
+                    <option value="ketogenic">Ketogenic</option>
                     <option value="">Vegetarian</option>
-                    <option value="">Lacto-Vegetarian</option>
-                    <option value="">Ovo-Vegetarian</option>
-                    <option value="">Vegan</option>
-                    <option value="">Pescetarian</option>
+                    <option value="lacto ovo vegetarian">Lacto-Vegetarian</option>
+                    <option value="lacto ovo vegetarian">Ovo-Vegetarian</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="pescetarian">Pescetarian</option>
+                    <option value="paleo">Paleo</option>
+                    <option value="Primal">Primal</option>
+                    <option value="whole30">Whole30</option>
+
                 </select>
-                {allRecipes?.map((e) => {
+                <Paginado
+                    recipesPerPage={recipesPerPage}
+                    allRecipes={allRecipes.length}
+                    paginado={paginado}
+                />
+                {currentRecipes?.map((e) => {
                     return (
                         <Fragment>
                             <Link to={"/home" + e.id}>
