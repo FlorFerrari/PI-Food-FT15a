@@ -21,29 +21,34 @@ export default function Home() {
 
     return (
         <div>
-            <Link to="/recipes">Create Recipe</Link>
+            <button><Link to="/recipes">Create Recipe</Link></button>
+            <button><Link to="/">Landing Page</Link></button>
+
             <h1>DELICIOUS</h1>
             <button onClick={e => { handleClick(e) }}>
                 get all recipes
             </button>
             <div>
-                <div><select value="">Rating - Low to High</select></div>
-
-                <div><select value="">Rating - High to Low</select></div>
-                <div><select value="">A-Z</select></div>
-                <div><select value="">Z-A</select></div>
+                <h5>Sort By</h5>
+                <select>
+                    <option value="">🍜</option>
+                    <option value="">Rating - Low to High</option>
+                    <option value="">Rating - High to Low</option>
+                    <option value="">A-Z</option>
+                    <option value="">Z-A</option>
+                </select>
             </div>
             <div>
-                <select value="poner el mismo nombre que en la bse de datos">Gluten Free</select>
-                <select value="">Ketogenic</select>
-                <select value="">Vegetarian</select>
-                <select value="">Lacto-Vegetarian</select>
-                <select value="">Ovo-Vegetarian</select>
-                <select value="">Vegan</select>
-                <select value="">Pescetarian</select>
-                <select value="">Paleo</select>
-                <select value="">Primal</select>
-                <select value="">Whole30</select>
+                <h5>Diet Type:</h5>
+                <select name="" id="">
+                    <option value="poner el mismo nombre que en la bse de datos">Gluten Free</option>
+                    <option value="">Ketogenic</option>
+                    <option value="">Vegetarian</option>
+                    <option value="">Lacto-Vegetarian</option>
+                    <option value="">Ovo-Vegetarian</option>
+                    <option value="">Vegan</option>
+                    <option value="">Pescetarian</option>
+                </select>
                 {allRecipes?.map((e) => {
                     return (
                         <Fragment>
