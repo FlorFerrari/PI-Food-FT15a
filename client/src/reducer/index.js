@@ -1,6 +1,7 @@
 
 const initialState = {
-    recipes : []
+    recipes : [],
+    allRecipes : []
 }
 
 function rootReducer (state = initialState, action){
@@ -8,8 +9,16 @@ function rootReducer (state = initialState, action){
         case "GET_RECIPES":
             return {
                 ...state,
-                recipes: action.payload
+                recipes: action.payload,
+                allRecipes: action.payload
             }
+            case "FILTER_BY_DIET":
+                const allRecipes = state.allRecipes
+                const statusFiltered = action.payload === "All" ? allRecipes : allRecipes.filter( e => e.diets.includes(action.payload))
+                return{
+                    ...state,
+                    recipes: statusFiltered
+                }
             default: 
             return state;
     }

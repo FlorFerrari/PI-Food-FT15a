@@ -10,3 +10,10 @@ export function getRecipes() {
         })
     }
 }
+
+export function filterRecipesByDiet(payload){
+    return {
+        type: "FILTER_BY_DIET",
+        payload
+    }
+}

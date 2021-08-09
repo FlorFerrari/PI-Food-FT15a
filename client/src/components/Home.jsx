@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes } from "../actions";
+import { getRecipes, filterRecipesByDiet } from "../actions";
 import { Link } from "react-router-dom"
 import Card from "./Card";
 import Paginado from "./Paginado";
@@ -31,6 +31,9 @@ export default function Home() {
         dispatch(getRecipes())
     }
 
+    function handleFilterDiet(e) {
+        dispatch(filterRecipesByDiet(e.target.value))
+    }
     return (
         <div>
             <button><Link to="/recipes">Create Recipe</Link></button>
@@ -52,8 +55,8 @@ export default function Home() {
             </div>
             <div>
                 <h5>Diet Type:</h5>
-                <select name="" id="">
-                    <option value="all">All</option>
+                <select onChange={e => handleFilterDiet(e)}>
+                    <option value="All">All</option>
                     <option value="gluten free">Gluten Free</option>
                     <option value="ketogenic">Ketogenic</option>
                     <option value="">Vegetarian</option>
