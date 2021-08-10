@@ -98,20 +98,25 @@ router.get("/recipes/:id", async (req, res) => {
 //En una primera instancia, cuando no exista ninguno, deberán precargar la base de datos con los tipos de datos indicados por spoonacular acá
 router.get("/types", async (req, res) => {
     const dietas = await Diet.findAll();
-    res.status(200).send(dietas)
+    const dietasMap = dietas.map( e => e.name)
+    
+    res.status(200).send(dietasMap)
 })
 
 
 //4) POST /recipe: --------- Recibe los datos recolectados desde el formulario controlado de la ruta de creación de recetas por body
 //Crea una receta en la base de datos
 router.post("/recipe", async (req, res) => {
-    let { title, summary, rating, healthScore, steps, image, createdInDb, diet} = req.body
+    let { title, summary, rating, healthScore, steps, image, createdInDb} = req.body
+    let diet = req.body.diet
     let recipeCreated = await Recipe.create ({title, summary, rating, healthScore, steps, image, createdInDb})
-   /*  let dietDataBase = await Diet.findAll({
-        where: { name: diet}
-    })
-    console.log(dietDataBase.name)
-    recipeCreated.addDiet(dietDataBase) */
+/*     let dietDataBase = await Diet.findAll()
+    let dietDataBaseMap = dietDataBase.map( e => e.name) //[ 'vegan', 'vegetarian', 'dairy free' ]
+    console.log(dietDataBaseMap)
+    let filtrado = dietDataBaseMap.filter( e => e === diet)
+    console.log(filtrado)
+    
+    recipeCreated.addDiet(filtrado)  */
     res.send("Recipe has been created succesfully")
 })
 

@@ -17,3 +17,38 @@ export function filterRecipesByDiet(payload){
         payload
     }
 }
+
+export function getNameRecipes(name) {
+    return async function(dispatch){
+        try {
+            var json = await axios.get("http://localhost:3001/recipes?title=" + name);
+        return dispatch({
+            type: "GET_NAME_RECIPES",
+            payload: json.data
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}}
+
+export function getDietTypes() {
+    return async function(dispatch){
+        
+        var info = await axios.get("http://localhost:3001/types", {
+
+        });
+        return dispatch({
+            type: "GET_DIET_TYPES",
+            payload: info.data
+        })
+    } 
+
+}
+
+export function postRecipe (payload){
+    return async function (dispatch){
+        const response = await axios.post("http://localhost:3001/recipe", payload)
+        console.log(response)
+        return response;
+    }
+}

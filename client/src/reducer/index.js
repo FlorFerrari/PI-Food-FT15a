@@ -1,7 +1,8 @@
 
 const initialState = {
     recipes : [],
-    allRecipes : []
+    allRecipes : [],
+    diets: []
 }
 
 function rootReducer (state = initialState, action){
@@ -19,6 +20,20 @@ function rootReducer (state = initialState, action){
                     ...state,
                     recipes: statusFiltered
                 }
+            case "GET_NAME_RECIPES":
+                return {
+                    ...state,
+                    recipes: action.payload
+                }
+                case "POST_CHARACTER":
+                    return {
+                        ...state,
+                    }
+                case "GET_DIET_TYPES":
+                    return {
+                        ...state,
+                        diets: action.payload
+                    }
             default: 
             return state;
     }
