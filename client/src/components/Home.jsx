@@ -11,16 +11,16 @@ export default function Home() {
     const dispatch = useDispatch();
     const allRecipes = useSelector((state) => state.recipes)
     //paginado
-    const [currentPage, setCurrentPage] = useState(1);
-    const [recipesPerPage, setRecipesPerPage] = useState(3);
-    const indexOfLastRecipe = currentPage * recipesPerPage
-    const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage
-    const currentRecipes = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe)
-
-    //ayuda al renderizado
-    const paginado = (pageNumer) => {
-        setCurrentPage(pageNumer)
-    }
+    /*   const [currentPage, setCurrentPage] = useState(1);
+      const [recipesPerPage, setRecipesPerPage] = useState(3);
+      const indexOfLastRecipe = currentPage * recipesPerPage
+      const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage
+      const currentRecipes = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe)
+  
+      //ayuda al renderizado
+      const paginado = (pageNumer) => {
+          setCurrentPage(pageNumer)
+      } */
 
     useEffect(() => {
         dispatch(getRecipes())
@@ -69,12 +69,12 @@ export default function Home() {
                     <option value="whole30">Whole30</option>
 
                 </select>
-                <Paginado
+                {/* <Paginado
                     recipesPerPage={recipesPerPage}
                     allRecipes={allRecipes.length}
                     paginado={paginado}
-                />
-                {currentRecipes?.map((e) => {
+                /> */}
+                {allRecipes?.map((e) => { //cuadno haga el paginadpo poner currentRecipes
                     return (
                         <Fragment>
                             <Link to={"/home" + e.id}>

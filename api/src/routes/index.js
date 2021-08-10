@@ -59,6 +59,7 @@ const getAllRecipes = async () => {
 router.get("/recipes", async (req, res) => {
     const { title } = req.query;
     let recipesTotal = await getAllRecipes();
+    console.log(getAllRecipes)
     if(title){
         let recipeName = await recipesTotal.filter( e => e.title.toLowerCase().includes(title.toLowerCase()))
         recipeName.length ? 
@@ -106,10 +107,11 @@ router.get("/types", async (req, res) => {
 router.post("/recipe", async (req, res) => {
     let { title, summary, rating, healthScore, steps, image, createdInDb, diet} = req.body
     let recipeCreated = await Recipe.create ({title, summary, rating, healthScore, steps, image, createdInDb})
-    let dietDataBase = await Diet.findAll({
+   /*  let dietDataBase = await Diet.findAll({
         where: { name: diet}
     })
-    recipeCreated.addDiet(dietDataBase)
+    console.log(dietDataBase.name)
+    recipeCreated.addDiet(dietDataBase) */
     res.send("Recipe has been created succesfully")
 })
 
