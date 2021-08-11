@@ -108,7 +108,7 @@ router.get("/types", async (req, res) => {
 //Crea una receta en la base de datos
 router.post("/recipe", async (req, res) => {
     let { title, summary, rating, healthScore, steps, image, createdInDb} = req.body
-    let diet = req.body.diet
+    //let diet = req.body.diet
     let recipeCreated = await Recipe.create ({title, summary, rating, healthScore, steps, image, createdInDb})
 /*     let dietDataBase = await Diet.findAll()
     let dietDataBaseMap = dietDataBase.map( e => e.name) //[ 'vegan', 'vegetarian', 'dairy free' ]
