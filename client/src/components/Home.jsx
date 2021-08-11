@@ -7,6 +7,7 @@ import Card from "./Card";
 import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
 
+
 export default function Home() {
 
     const dispatch = useDispatch();
@@ -40,7 +41,7 @@ export default function Home() {
             <button><Link to="/recipes">Create Recipe</Link></button>
             <button><Link to="/">Landing Page</Link></button>
 
-            <h1>DELICIOUS</h1>
+            <sh1>DELICIOUS</sh1>
             <button onClick={e => { handleClick(e) }}>
                 get all recipes
             </button>

@@ -1,0 +1,35 @@
+body{
+    margin-top: 2rem;
+    background-image: url("../pruebalanding1.jpg");
+    background-size: cover;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position-y: -50px;
+    background-position-x: 5px;
+
+}
+
+.container {
+    margin-left: 95px;
+    margin-top: 29%;
+    background: none;
+    background-image: none;
+    
+}
+.button {
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 5px;
+    background-color: #2b9b20;
+    border: none;
+    color: #ffffffe1;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+    width: 200px;
+    cursor: pointer;
+    margin-top: -100px;
+    
+    
+  }
+  
+  
