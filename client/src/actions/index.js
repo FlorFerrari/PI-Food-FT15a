@@ -47,8 +47,17 @@ export function getDietTypes() {
 
 export function postRecipe (payload){
     return async function (dispatch){
+        
         const response = await axios.post("http://localhost:3001/recipe", payload)
         console.log(response)
         return response;
+        
+    }
+}
+
+export function orderByName(payload){
+    return {
+        type: "ORDER_BY_NAME",
+        payload
     }
 }

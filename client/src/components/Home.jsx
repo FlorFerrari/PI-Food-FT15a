@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes, filterRecipesByDiet } from "../actions";
+import { getRecipes, filterRecipesByDiet, orderByName } from "../actions";
 import { Link } from "react-router-dom"
 import Card from "./Card";
 import Paginado from "./Paginado";
@@ -22,6 +22,7 @@ export default function Home() {
 
     const currentRecipes = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe)
 
+    const [orden, setOrden] = useState("")
     //ayuda al renderizado
     const paginado = (pageNumer) => {
         setCurrentPage(pageNumer)
@@ -39,25 +40,33 @@ export default function Home() {
     function handleFilterDiet(e) {
         dispatch(filterRecipesByDiet(e.target.value))
     }
+
+    function handleSort(e) {
+        e.preventDefault();
+        dispatch(orderByName(e.target.value))
+        setCurrentPage(1)
+        setOrden(e.target.value)
+    }
     return (
         <Container >
-            <nav >
+            <StyledNav >
                 <ul>
+
+                    <li><button><Link to="/">Go back</Link></button></li>
                     <li><button><Link to="/recipes">Create Recipe</Link></button></li>
-                    <li><button><Link to="/">Landing Page</Link></button></li>
                     <li><button onClick={e => { handleClick(e) }}> Get all recipes</button></li>
 
                 </ul>
 
-            </nav>
+            </StyledNav>
 
-            <div >
-                <select>
-                    <option value="">Sorty By</option>
+            <StyledSearch >
+                <select onChange={e => handleSort(e)}>
+                    {/* <option value="">Sorty By</option>
                     <option value="">Rating - Low to High</option>
-                    <option value="">Rating - High to Low</option>
-                    <option value="">A-Z</option>
-                    <option value="">Z-A</option>
+                    <option value="">Rating - High to Low</option> */}
+                    <option value="desc">A-Z</option>
+                    <option value="asc">Z-A</option>
                 </select>
                 <SearchBar />
                 <select onChange={e => handleFilterDiet(e)}>
@@ -73,7 +82,7 @@ export default function Home() {
                     <option value="Primal">Primal</option>
                     <option value="whole30">Whole30</option>
                 </select>
-            </div>
+            </StyledSearch>
 
             <Recipes>
                 {currentRecipes.map(e => (
@@ -94,17 +103,89 @@ export default function Home() {
     )
 }
 
+
+
+
+
+//------> STYLED COMPONENTS <----------
+
+
+
+
+
 const Container = styled.div`
   padding: 0rem 9rem;
+  
+  height: 100vh;
+  
 `;
 
 
 const Recipes = styled.div`
-  min-height: 80vh;
+  min-height: 30vh;
+  height: 80vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 4rem;
   grid-row-gap: 1rem;
   
+  
+`;
+
+const StyledSearch = styled.div`
+    font-family: serif;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    margin: 1rem;
+    
+    select {
+        cursor: pointer;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+        justify-content: space-around;
+        width: 20rem;
+        padding-left: 8rem;
+        option{
+            font-family: monospace;
+            
+        }
+
+         
+    }
+ 
+  
+`;
+
+
+const StyledNav = styled.nav`
+        font-family: serif;
+        background-color: #fffffff1;
+        display: grid;
+        grid-template-columns: 1fr;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        
+        ul {
+            display: flex;
+            justify-content: space-between;
+        }
+        li{
+            list-style: none;
+        }
+        button {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            padding: 0.5rem;
+            cursor: pointer;
+            
+            
+        }
+      button:hover {
+        background-color: #eaec7a;
+}
+
+        
   
 `;

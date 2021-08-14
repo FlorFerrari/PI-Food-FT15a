@@ -34,6 +34,37 @@ function rootReducer (state = initialState, action){
                         ...state,
                         diets: action.payload
                     }
+                case "ORDER_BY_NAME":
+                        if (action.payload ==="desc") {
+                            let sortedArr = state.recipes.sort(function(a,b){
+                                if(a.title > b.title) {
+                                    return 1
+                                }
+                                if (b.title > a.title) {
+                                    return -1
+                                }
+                                return 0;
+                            })
+                            return {
+                                ...state,
+                                recipes: sortedArr
+                            }} else if (action.payload ==="asc") {
+                            let sortedArr = state.recipes.sort(function(a,b){
+                                if(a.title > b.title) {
+                                    return -1
+                                }
+                                if (b.title > a.title) {
+                                    return 1
+                                }
+                                return 0;
+                            })
+                    
+                        return {
+                            ...state,
+                            recipes: sortedArr
+                        }}
+                        
+                    
             default: 
             return state;
     }

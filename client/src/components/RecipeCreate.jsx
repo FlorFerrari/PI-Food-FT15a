@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { postRecipe, getDietTypes, getRecipes } from "../actions/index";
 import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
 
 export default function RecipeCreate() {
     const dispatch = useDispatch()
@@ -27,23 +28,17 @@ export default function RecipeCreate() {
     }
 
     function handleCheck(e) {
-        if (!e.target.checked && input.diets.length > 0) {
-            console.log("unchecked")
-            var auxiliar = input.diets.pop()
-            setInput({
-                ...input,
-                diets: [auxiliar]
-            })
-        }
-        if (!input.diets.includes(e.target.value)) {
-            setInput({
-                ...input,
-                diets: [...input, e.target.value]
-            })
-        }
-        console.log("targetvalue:" + e.target.value)
-        console.log(input)
+        if (e.target.checked) console.log("checked")
+        if (!e.target.checked) console.log("unchecked")
 
+        if (e.target.checked && !input.diets.includes(e.target.value)) {
+
+            setInput({
+                ...input,
+                diets: [...input.diets, e.target.value]
+            })
+        }
+        console.log(input)
     }
 
     function handleSubmit(e) {
@@ -67,13 +62,15 @@ export default function RecipeCreate() {
       }, []); */
 
     return (
-        <div>
+        <Container>
+
             <Link to="/home"><button>Home</button></Link>
             <h1>Create your own recipe</h1>
-            <form onSubmit={(e) => handleSubmit(e)}>
+
+            <StyleForm onSubmit={(e) => handleSubmit(e)}>
                 <div>
                     <label>Name: </label>
-                    <input type="text"
+                    <StyledInput type="text"
                         value={input.title}
                         name="title"
                         onChange={(e) => handleChange(e)}
@@ -81,7 +78,7 @@ export default function RecipeCreate() {
                 </div>
                 <div>
                     <label>Summary: </label>
-                    <input type="text"
+                    <StyledInput type="text"
                         value={input.summary}
                         name="summary"
                         onChange={(e) => handleChange(e)}
@@ -97,19 +94,19 @@ export default function RecipeCreate() {
                         onChange={(e) => handleChange(e)}
                     />
                 </div>
-                {/* <div>
+                <div>
                     <label>Health Score: </label>
                     <input type="range"
                         value={input.healthScore}
                         name="healtScore"
                         min="1"
-                        max="1000"
+                        max="100"
                         onChange={(e) => handleChange(e)}
                     />
-                </div> */}
+                </div>
                 <div>
                     <label>Steps: </label>
-                    <input type="text"
+                    <StyledInput type="text"
                         value={input.steps}
                         name="steps"
                         onChange={(e) => handleChange(e)}
@@ -117,42 +114,75 @@ export default function RecipeCreate() {
                 </div>
                 <div>
                     <label>Image: </label>
-                    <input type="text"
+                    <StyledInput type="text"
                         value={input.image}
                         name="image"
                         onChange={(e) => handleChange(e)}
                     />
                 </div>
                 <div>
-                    <label><input type="checkbox" name="diets" value="Gluten Free" id="1" onChange={(e) => handleCheck(e)} />Gluten Free</label>
-                    <label><input type="checkbox" name="diets" value="Ketogenic" id="1" onChange={(e) => handleCheck(e)} />Ketogenic </label>
-                    <label><input type="checkbox" name="diets" value="Vegetarian" id="1" onChange={(e) => handleCheck(e)} />Vegetarian</label>
-                    <label><input type="checkbox" name="diets" value="Vegan" id="1" onChange={(e) => handleCheck(e)} />Vegan</label>
-
-
-                    {/* 
-
-                    <input type="checkbox" name="diets" value="Ketogenic" id="2" onChange={(e) => handleCheck(e)} />
-                    <label for="2">Ketogenic</label>
-                    <input type="checkbox" name="diets" value="Vegetarian" id="3" onChange={(e) => handleCheck(e)} />
-                    <label for="3">Vegetarian</label>
-                    <input type="checkbox" name="diets" value="Lacto ovo vegetarian" id="4" onChange={(e) => handleCheck(e)} />
-                    <label for="4">Lacto ovo vegetarian</label>
-                    <input type="checkbox" name="diets" value="Vegan" id="5" onChange={(e) => handleCheck(e)} />
-                    <label for="5">Vegan</label>
-                    <input type="checkbox" name="diets" value="Primal" id="6" onChange={(e) => handleCheck(e)} />
-                    <label for="6">Primal</label>
-                    <input type="checkbox" name="diets" value="Dairy free" id="7" onChange={(e) => handleCheck(e)} />
-                    <label for="7">Dairy free</label>
-                    <input type="checkbox" name="diets" value="Pescatarian" id="8" onChange={(e) => handleCheck(e)} />
-                    <label for="8">Pescatarian</label>
-                    <input type="checkbox" name="diets" value="Paleolithic" id="9" onChange={(e) => handleCheck(e)} />
-                    <label for="9">Paleolithic</label>
-                    <input type="checkbox" name="diets" value="Whole30" id="10" onChange={(e) => handleCheck(e)} />
-                    <label for="10">Whole30</label> */}
+                    <label><input type="checkbox" name="diets" value="1" id="1" onChange={(e) => handleCheck(e)} />Gluten Free</label>
+                    <label><input type="checkbox" name="diets" value="2" id="2" onChange={(e) => handleCheck(e)} />Ketogenic </label>
+                    <label><input type="checkbox" name="diets" value="3" id="3" onChange={(e) => handleCheck(e)} />Vegetarian</label>
+                    <label><input type="checkbox" name="diets" value="4" id="4" onChange={(e) => handleCheck(e)} />Lacto ovo vegetarian</label>
+                    <label><input type="checkbox" name="diets" value="5" id="5" onChange={(e) => handleCheck(e)} />Dairy free</label>
+                    <label><input type="checkbox" name="diets" value="6" id="6" onChange={(e) => handleCheck(e)} />Vegan</label>
+                    <label><input type="checkbox" name="diets" value="7" id="7" onChange={(e) => handleCheck(e)} />Pescatarian</label>
+                    <label><input type="checkbox" name="diets" value="8" id="8" onChange={(e) => handleCheck(e)} />Paleolithic</label>
+                    <label><input type="checkbox" name="diets" value="9" id="9" onChange={(e) => handleCheck(e)} />Primal</label>
+                    <label><input type="checkbox" name="diets" value="10" id="10" onChange={(e) => handleCheck(e)} />Whole30</label>
                 </div>
                 <button type="submit"  >Create</button>
-            </form>
-        </div >
+            </StyleForm>
+        </Container >
     )
 }
+
+
+
+
+
+
+//------> STYLED COMPONENTS <----------
+
+const StyleForm = styled.form`
+            background-color: #bea5a5;
+            min-height: 10vh;
+            max-height: 50vh;
+            height: 40vh;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 12px;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            border-radius: 1rem;
+            width: 100vh;
+            margin-left: 20%;
+            padding-top: 3rem;
+            div {
+                margin: 1rem;
+            }
+            
+            
+            
+`;
+
+const StyledInput = styled.input`
+cursor: pointer;
+border: none;
+border-radius: 10px;
+box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+justify-content: space-around;
+width: 10rem;
+padding-left: 8rem;
+`;
+
+
+const Container = styled.div`
+padding: 0rem 9rem;
+background-color: #888888;
+height: 90vh;
+h1{
+    margin-left: 38%
+}
+
+`;

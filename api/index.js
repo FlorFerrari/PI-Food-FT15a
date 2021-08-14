@@ -19,10 +19,32 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
+const { Diet } = require("./src/db.js");
 
 // Syncing all the models at once.
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
+
+    var diets = [
+      'gluten free', 
+      'ketogenic',
+      'vegetarian',
+      'lacto ovo vegetarian',
+      'dairy free',
+      'vegan',
+      'pescatarian',
+      'paleolithic',
+      'primal',
+      'whole30'
+      ]
+
+    diets.map((d) => {
+      Diet.create({ name: d })
+        .then((res) => {   //-----> revisar esto, es necesario????
+          d = res.dataValues.name;
+        })
+        .catch((e) => console.error(e));
+    });
   });
 });

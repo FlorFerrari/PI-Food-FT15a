@@ -7,7 +7,8 @@ const axios = require("axios");
 const Diet = require('../models/Diet');  */
 const { Recipe, Diet, recipe_diet} = require("../db.js");
 
-const { API_KEY } = process.env; // ESTA BIEN ESTO???
+const { API_KEY, API_KEY2 } = process.env; // ESTA BIEN ESTO???
+const api = API_KEY2;
 
 const router = Router();
 
@@ -16,7 +17,7 @@ const router = Router();
 
 
 const getApiInfo = async () => {
-    const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`);
+    const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${api}&addRecipeInformation=true`);
     const apiInfo = await apiUrl.data.results.map(e => {
         return {
             id: e.id,
@@ -30,6 +31,7 @@ const getApiInfo = async () => {
     });
     return apiInfo;
 }
+
 
 
 const getDbInfo = async () => {
@@ -73,6 +75,7 @@ router.get("/recipes", async (req, res) => {
 //RUTA EXTRA PARA TRAER RECETAS CREADAS PR EL USUARIO
 router.get("/myrecipes", async (req, res) => {
     let recipes = await getDbInfo();
+    console.log(recipes)
     recipes.length ?
     res.status(200).send(recipes) :
     res.status(404).send("you didnt create a recipe yet!")
@@ -108,16 +111,48 @@ router.get("/types", async (req, res) => {
 //Crea una receta en la base de datos
 router.post("/recipe", async (req, res) => {
     let { title, summary, rating, healthScore, steps, image, createdInDb} = req.body
-    //let diet = req.body.diet
+
+    const diet = req.body.diet;
+    
+    var d = diet.map((e) => parseInt(e));
+
+    try {
+    let newRecipe = await Recipe.create({
+      title,
+      summary,
+      rating,
+      healthScore,
+      steps,
+      image,
+      createdInDb
+      
+    });
+
+    d.map(async (d) => await newRecipe.setDiets(d));
+
+    res.send(newRecipe);
+  } catch (error) {
+    console.log(error);
+  }
+
+
+
+
+/* 
     let recipeCreated = await Recipe.create ({title, summary, rating, healthScore, steps, image, createdInDb})
-/*     let dietDataBase = await Diet.findAll()
-    let dietDataBaseMap = dietDataBase.map( e => e.name) //[ 'vegan', 'vegetarian', 'dairy free' ]
+
+    let dietDataBase = await Diet.findAll()
+    let dietDataBaseMap = dietDataBase.map( e => e.name) //[ 'vegan', 'vegetarian', 'dairy free' etc.....]
     console.log(dietDataBaseMap)
+
     let filtrado = dietDataBaseMap.filter( e => e === diet)
     console.log(filtrado)
-    
-    recipeCreated.addDiet(filtrado)  */
-    res.send("Recipe has been created succesfully")
+
+    let final = filtrado.join()
+    console.log(final)
+
+    recipeCreated.setDiets(final)  
+    res.send("Recipe has been created succesfully") */
 })
 
 

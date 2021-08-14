@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
       //el ID lo genera solo
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     
   });
