@@ -62,9 +62,9 @@ export default function Home() {
 
             <StyledSearch >
                 <select onChange={e => handleSort(e)}>
-                    {/* <option value="">Sorty By</option>
-                    <option value="">Rating - Low to High</option>
-                    <option value="">Rating - High to Low</option> */}
+
+                    <option value="1">Rating - Low to High</option>
+                    <option value="2">Rating - High to Low</option>
                     <option value="desc">A-Z</option>
                     <option value="asc">Z-A</option>
                 </select>

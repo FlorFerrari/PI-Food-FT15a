@@ -35,7 +35,7 @@ function rootReducer (state = initialState, action){
                         diets: action.payload
                     }
                 case "ORDER_BY_NAME":
-                        if (action.payload ==="desc") {
+                        if (action.payload === "desc") {
                             let sortedArr = state.recipes.sort(function(a,b){
                                 if(a.title > b.title) {
                                     return 1
@@ -48,7 +48,9 @@ function rootReducer (state = initialState, action){
                             return {
                                 ...state,
                                 recipes: sortedArr
-                            }} else if (action.payload ==="asc") {
+                            }} 
+                            
+                            if (action.payload === "asc") {
                             let sortedArr = state.recipes.sort(function(a,b){
                                 if(a.title > b.title) {
                                     return -1
@@ -59,10 +61,40 @@ function rootReducer (state = initialState, action){
                                 return 0;
                             })
                     
-                        return {
+                            return {
                             ...state,
                             recipes: sortedArr
-                        }}
+                            }}
+ 
+                            if (action.payload === "1") {
+                                let sortedArr = state.recipes.sort(function(a,b){
+                                    if(a.healthScore > b.healthScore) {
+                                        return 1
+                                    }
+                                    if (b.healthScore > a.healthScore) {
+                                        return -1
+                                    }
+                                    return 0;
+                                })
+                                return {
+                                    ...state,
+                                    recipes: sortedArr
+                                }} 
+
+                            else if (action.payload ==="2") {
+                                    let sortedArr = state.recipes.sort(function(a,b){
+                                        if(a.healthScore > b.healthScore) {
+                                            return -1
+                                        }
+                                        if (b.healthScore > a.healthScore) {
+                                            return 1
+                                        }
+                                        return 0;
+                                    })
+                                    return {
+                                        ...state,
+                                        recipes: sortedArr
+                                    }} 
                         
                     
             default: 
