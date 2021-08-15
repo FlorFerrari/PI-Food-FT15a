@@ -97,7 +97,7 @@ function rootReducer (state = initialState, action){
                                         recipes: sortedArr
                                     }} 
                         
-                    case "GET_DETAILS":
+                    case "GET_DETAIL":
                         return {
                             ...state,
                             detail: action.payload

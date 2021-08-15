@@ -67,7 +67,7 @@ export function getDetail (id) {
         try{
             var json = await axios.get("http://localhost:3001/recipes/" + id);
             return dispatch ({
-                type: "GET_DETAILS",
+                type: "GET_DETAIL",
                 payload: json.data
             })
         } catch(error){

@@ -1,11 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { getDetail } from "../actions";
 
 
-export default function Card({ title, image, diets }) {
+export default function Card({ title, image, diets, id }) {
+
+    const dispatch = useDispatch();
+    const loadDetailHandler = () => {
+        console.log("entro al detail handler")
+        dispatch(getDetail(id))
+    }
 
     return (
-        <StyledRecipe >
+        <StyledRecipe onClick={loadDetailHandler}>
             <h3>{title}</h3>
             <img src={image} alt="background" width="200px" height="250px" />
 

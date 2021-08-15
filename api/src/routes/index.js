@@ -8,7 +8,7 @@ const Diet = require('../models/Diet');  */
 const { Recipe, Diet, recipe_diet} = require("../db.js");
 
 const { API_KEY, API_KEY2 } = process.env; // ESTA BIEN ESTO???
-const api = API_KEY;
+const api = API_KEY2;
 
 const router = Router();
 
@@ -26,9 +26,12 @@ const getApiInfo = async () => {
            diets: e.diets.map(e => e),
             summary: e.summary,
             healthScore: e.healthScore,
-            rating: e.spoonacularScore 
+            rating: e.spoonacularScore,
+            
         } 
+        
     });
+    console.log("entre")
     return apiInfo;
 }
 
@@ -49,6 +52,7 @@ const getDbInfo = async () => {
 const getAllRecipes = async () => {
     const apiInfo = await getApiInfo();
     const dbInfo = await getDbInfo();
+    
     const infoTotal = apiInfo.concat(dbInfo);
     return infoTotal;
 }

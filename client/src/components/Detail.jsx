@@ -1,28 +1,37 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom"
-import { getDetail } from "../actions";
+import { getDetail } from "../actions/index";
+
+import styled from "styled-components";
 
 export default function Detail(props) {
-    console.log(props)
-    const dispatch = useDispatch()
+
+
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getDetail(props.match.params.id));
-
+        dispatch(getDetail(props.match.params.id))
     }, [dispatch])
 
-    const myRecipe = useSelector((state) => state.detail)
+    const detail = useSelector((state) => state.detail)
 
     return (
         <div>
             {
-                //myRecipe.length > 0 ? 
-                <div>
-                    <h1>{myRecipe[0].name}</h1>
-                </div>
+                detail.length > 0 ?
+                    <div>
+                        <h1>hola {detail[0].title}</h1>
+                    </div> : <p>Loading...</p>
             }
+            <Link to="/home">go back</Link>
+
+
         </div>
-    )
+    );
+
+
+
 }

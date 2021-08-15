@@ -34,8 +34,6 @@ const Contenedor = styled.div`
             
             
         }
-      button:hover {
-        background-color: #eaec7a;
-}
+     
   
 `;
