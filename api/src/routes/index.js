@@ -8,7 +8,7 @@ const Diet = require('../models/Diet');  */
 const { Recipe, Diet, recipe_diet} = require("../db.js");
 
 const { API_KEY, API_KEY2 } = process.env; // ESTA BIEN ESTO???
-const api = API_KEY2;
+const api = API_KEY;
 
 const router = Router();
 
@@ -110,11 +110,12 @@ router.get("/types", async (req, res) => {
 //4) POST /recipe: --------- Recibe los datos recolectados desde el formulario controlado de la ruta de creación de recetas por body
 //Crea una receta en la base de datos
 router.post("/recipe", async (req, res) => {
-    let { title, summary, rating, healthScore, steps, image, createdInDb} = req.body
+    let { title, summary, rating, healthScore, steps, image, diets, createdInDb} = req.body
+    /* if(!healthScore){
+        res.status(403).send("error")
+        return
+    } */
 
-    const diet = req.body.diet;
-    
-    var d = diet.map((e) => parseInt(e));
 
     try {
     let newRecipe = await Recipe.create({
@@ -128,6 +129,7 @@ router.post("/recipe", async (req, res) => {
       
     });
 
+    var d = diets.map((e) => parseInt(e));
     d.map(async (d) => await newRecipe.setDiets(d));
 
     res.send(newRecipe);

@@ -1,5 +1,5 @@
 import React from "react";
-//import s from "../styles/Paginado.module.css"
+import styled from "styled-components";
 
 export default function Paginado({ recipesPerPage, allRecipes, paginado }) {
     const pageNumbers = []
@@ -7,7 +7,7 @@ export default function Paginado({ recipesPerPage, allRecipes, paginado }) {
         pageNumbers.push(i)
     }
     return (
-        <nav>
+        <StyledNav>
             <ul >
                 {pageNumbers &&
                     pageNumbers.map(number => (
@@ -16,6 +16,32 @@ export default function Paginado({ recipesPerPage, allRecipes, paginado }) {
                         </li>
                     ))}
             </ul>
-        </nav>
+        </StyledNav>
     )
 }
+
+//--------- STYLED COMPONENTS
+
+const StyledNav = styled.div`
+  position: absolute;
+  margin-left: 81rem;
+  bottom: 23rem;
+  ul {
+      list-style: none;
+  }
+  li{
+      margin: 0.5rem
+  }
+  button {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            padding: 0.5rem;
+            cursor: pointer;
+            
+            
+        }
+      button:hover {
+        background-color: #eaec7a;}
+
+`;

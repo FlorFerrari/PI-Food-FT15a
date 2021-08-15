@@ -11,13 +11,14 @@ export default function RecipeCreate() {
     const [input, setInput] = useState({
         title: "",
         summary: "",
-        rating: "",
-        healthScore: "",
+        rating: "1",
+        healthScore: "1",
         steps: "",
         image: "",
         diets: []
 
     })
+    console.log(input)
 
     function handleChange(e) {
         setInput({
@@ -28,17 +29,29 @@ export default function RecipeCreate() {
     }
 
     function handleCheck(e) {
-        if (e.target.checked) console.log("checked")
-        if (!e.target.checked) console.log("unchecked")
+        const diet = e.target.value;
 
-        if (e.target.checked && !input.diets.includes(e.target.value)) {
+        if (e.target.checked && !input.diets.includes(diet)) {
 
-            setInput({
+            var set = ({
                 ...input,
-                diets: [...input.diets, e.target.value]
+                diets: [...input.diets, diet]
             })
+            setInput(set)
+        } else {
+
+            if (!e.target.checked) {
+                console.log("entro")
+                var set = ({
+                    ...input,
+                    diets: [...input.diets].filter(d => d !== diet)
+                })
+                setInput(set)
+            }
+
         }
-        console.log(input)
+
+
     }
 
     function handleSubmit(e) {
@@ -98,7 +111,7 @@ export default function RecipeCreate() {
                     <label>Health Score: </label>
                     <input type="range"
                         value={input.healthScore}
-                        name="healtScore"
+                        name="healthScore"
                         min="1"
                         max="100"
                         onChange={(e) => handleChange(e)}
