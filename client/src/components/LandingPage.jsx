@@ -18,7 +18,8 @@ export default function LandingPage() {
 
 const Contenedor = styled.div`
     height: 100vh;
-    background-color: linen;
+    background-image: url("./imagen1.jpg");
+
     display: flex;
     justify-content: center;
     div {
@@ -31,7 +32,6 @@ const Contenedor = styled.div`
             box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
             padding: 0.5rem;
             cursor: pointer;
-            
             
         }
      

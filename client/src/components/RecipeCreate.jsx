@@ -4,9 +4,22 @@ import { postRecipe, getDietTypes, getRecipes } from "../actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
+function validate(input) {
+    let errors = {};
+    if (!input.title) {
+        errors.name = "Title required"
+    }
+    return errors;
+}
+
+
+
 export default function RecipeCreate() {
     const dispatch = useDispatch()
     const diets = useSelector(state => state.diets)
+    const [errors, setErrors] = useState({
+        title: "Name is required",
+    })
 
     const [input, setInput] = useState({
         title: "",
@@ -25,6 +38,10 @@ export default function RecipeCreate() {
             ...input,
             [e.target.name]: e.target.value
         })
+        setErrors(validate({
+            ...input,
+            [e.target.name]: e.target.value
+        }))
         console.log(input)
     }
 
@@ -89,6 +106,11 @@ export default function RecipeCreate() {
                         onChange={(e) => handleChange(e)}
                     />
                 </div>
+
+                {errors.name && (
+                    <p>{errors.name}</p>
+                )}
+
                 <div>
                     <label>Summary: </label>
                     <StyledInput type="text"
@@ -125,14 +147,7 @@ export default function RecipeCreate() {
                         onChange={(e) => handleChange(e)}
                     />
                 </div>
-                <div>
-                    <label>Image: </label>
-                    <StyledInput type="text"
-                        value={input.image}
-                        name="image"
-                        onChange={(e) => handleChange(e)}
-                    />
-                </div>
+
                 <div>
                     <label><input type="checkbox" name="diets" value="1" id="1" onChange={(e) => handleCheck(e)} />Gluten Free</label>
                     <label><input type="checkbox" name="diets" value="2" id="2" onChange={(e) => handleCheck(e)} />Ketogenic </label>

@@ -6,14 +6,15 @@ import { getDetail } from "../actions";
 
 export default function Card({ title, image, diets, id }) {
 
-    const dispatch = useDispatch();
+    /* const dispatch = useDispatch();
     const loadDetailHandler = () => {
         console.log("entro al detail handler")
         dispatch(getDetail(id))
-    }
+    } */
 
     return (
-        <StyledRecipe onClick={loadDetailHandler}>
+
+        <StyledRecipe /* onClick={loadDetailHandler} */>
             <h3>{title}</h3>
             <img src={image} alt="background" width="200px" height="250px" />
 
@@ -32,6 +33,15 @@ export default function Card({ title, image, diets, id }) {
 
 //------> STYLED COMPONENTS <----------
 
+
+
+
+const StyledContainer = styled.div`
+  padding: 0rem 9rem;
+  
+  height: 100vh;
+  
+`;
 
 const StyledRecipe = styled.div`
             min-height: 10vh;
