@@ -42,6 +42,6 @@ const StyledNav = styled.div`
             
         }
       button:hover {
-        background-color: #eaec7a;}
+        background-color: #e2f3db;}
 
 `;

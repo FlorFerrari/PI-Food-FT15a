@@ -28,13 +28,14 @@ export default function Detail(props) {
                         <StyledDetail>
                             <h1>{detail[0].title}</h1>
                             <img src={detail[0].image ? detail[0].image : "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/4353c586-8637-4645-86bb-201136ab461d/dcywcin-2a161519-7290-4244-ade5-ce1771a84626.png/v1/fill/w_1600,h_1600,strp/just_a_happy_potato_by_leuldeaur_dcywcin-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTYwMCIsInBhdGgiOiJcL2ZcLzQzNTNjNTg2LTg2MzctNDY0NS04NmJiLTIwMTEzNmFiNDYxZFwvZGN5d2Npbi0yYTE2MTUxOS03MjkwLTQyNDQtYWRlNS1jZTE3NzFhODQ2MjYucG5nIiwid2lkdGgiOiI8PTE2MDAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.3-SOlTK3WVpkvkTOOdloRcmakeBO6AnygB6JC62N4JE"} alt="Food" />
+                            <h5>Summary:</h5>
+                            <div dangerouslySetInnerHTML={{ __html: detail[0].summary }} />
 
-                            <div dangerouslySetInnerHTML={{ __html: detail[0].summary }} />;
-
-
+                            <h5>Health Score:</h5>
                             <h4>{detail[0].healthScore}</h4>
+                            <h5>Rating:</h5>
                             <h4>{detail[0].rating}</h4>
-
+                            <h5>Diets:</h5>
                             <div>{typeof (detail[0].diets[0]) === "string" ? detail[0].diets.map(e => <h5>{e}</h5>) : detail[0].diets.map(e => <h5>{e.name}</h5>)}</div>
 
                         </StyledDetail> : <p>Loading...</p>
@@ -54,9 +55,11 @@ export default function Detail(props) {
 
 
 const StyledContainer = styled.div`
-           background-color: #f0f0f0;
-           height: 90vh;
-           padding: 4rem;
+           font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            padding: 0rem 9rem;
+        background: linear-gradient(90deg, rgba(131,157,125,0.8911939775910365) 8%, rgba(143,149,126,0.7287289915966386) 92%);
+height: 98vh;
            display: flex;
            justify-content: center;
            button {
@@ -76,30 +79,20 @@ const StyledContainer = styled.div`
 
 
 const StyledDetail = styled.div`
-            height: 70vh;
-            width: 90vh;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            font-size: 12px;
+            height: 90vh;
+            width: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
             box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
             text-align: center;
             border-radius: 1rem;
-            cursor: pointer;
-            overflow: hidden;
-            img {
-                width: 100%;
-            height: 22vh;
-            object-fit: cover;}
-            h5 {
-                margin-top: 8px;
-                margin-left: 15px;
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr 1fr;
-                justify-content: space-evenly;
-                grid-row-gap: -20px;
-                font-size: x-small;
-
-            }
             
+           
+            img {
+            width: 100%;
+            height: 30vh;
+            object-fit: cover;
+        }
             
             `;
 

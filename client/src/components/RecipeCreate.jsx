@@ -94,7 +94,7 @@ export default function RecipeCreate() {
     return (
         <Container>
 
-            <Link to="/home"><button>Home</button></Link>
+            <Link to="/home"><StyledButton>Home</StyledButton></Link>
             <h1>Create your own recipe</h1>
 
             <StyleForm onSubmit={(e) => handleSubmit(e)}>
@@ -174,10 +174,13 @@ export default function RecipeCreate() {
 //------> STYLED COMPONENTS <----------
 
 const StyleForm = styled.form`
-            background-color: #bea5a5;
+font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            
+            background-color: #bec9ba;
             min-height: 10vh;
-            max-height: 50vh;
-            height: 40vh;
+            max-height: 80vh;
+            height: 60vh;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             font-size: 12px;
             box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
@@ -189,12 +192,26 @@ const StyleForm = styled.form`
             div {
                 margin: 1rem;
             }
+            button{
+                position: relative;
+                top: 1rem;
+                border: none;
+            border-radius: 10px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            padding: 0.5rem;
+            cursor: pointer;
+            width: 17rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            }
             
             
             
 `;
 
 const StyledInput = styled.input`
+font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
 cursor: pointer;
 border: none;
 border-radius: 10px;
@@ -205,12 +222,45 @@ padding-left: 8rem;
 `;
 
 
+const StyledButton = styled.button`
+    
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            padding: 0.5rem;
+            cursor: pointer;
+            width: 10rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            position: relative;
+            top: 4rem;
+            left: -2rem;
+
+`;
+
+
+
+
 const Container = styled.div`
+font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
 padding: 0rem 9rem;
-background-color: #888888;
-height: 90vh;
+background: linear-gradient(90deg, rgba(131,157,125,0.8911939775910365) 8%, rgba(143,149,126,0.7287289915966386) 92%);
+height: 98vh;
 h1{
     margin-left: 38%
 }
 
+button:hover {
+            background-color: #e2f3db;
+        }
+        label{
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+        }
+
+
 `;
+
+
+

@@ -18,9 +18,9 @@ export default function Card({ title, image, diets, id }) {
             <h3>{title}</h3>
             <img src={image} alt="background" width="200px" height="250px" />
 
-            <div>{diets.map(e => (
+            <StyledContainer>{diets.map(e => (
                 <h5>{e}</h5>
-            ))}</div>
+            ))}</StyledContainer>
 
         </StyledRecipe>
     )
@@ -37,9 +37,18 @@ export default function Card({ title, image, diets, id }) {
 
 
 const StyledContainer = styled.div`
-  padding: 0rem 9rem;
+  background-color: #e2f3db;
+  border-radius: 10px;
   
-  height: 100vh;
+  display: flex;
+  
+  justify-content: center;
+  gap: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  position: relative;
+  top: -1px;
   
 `;
 
@@ -47,8 +56,7 @@ const StyledRecipe = styled.div`
             min-height: 10vh;
             max-height: 50vh;
             height: 40vh;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            font-size: 12px;
+            
             box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
             text-align: center;
             border-radius: 1rem;
@@ -59,13 +67,13 @@ const StyledRecipe = styled.div`
             height: 22vh;
             object-fit: cover;}
             h5 {
-                margin-top: 8px;
+               /*  margin-top: 8px;
                 margin-left: 15px;
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr 1fr;
                 justify-content: space-evenly;
-                grid-row-gap: -20px;
-                font-size: x-small;
+                grid-row-gap: -20px; */
+                font-size: 15px
 
             }
             

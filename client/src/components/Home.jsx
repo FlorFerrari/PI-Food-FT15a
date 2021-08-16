@@ -121,6 +121,8 @@ const Container = styled.div`
   padding: 0rem 9rem;
   
   height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
   
 `;
 
@@ -132,7 +134,13 @@ const Recipes = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 4rem;
   grid-row-gap: 1rem;
-  
+  font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+
+  a, a:hover, a:focus, a:active {
+      text-decoration: none;
+      color: inherit;
+  }
   
 `;
 
@@ -150,8 +158,11 @@ const StyledSearch = styled.div`
         justify-content: space-around;
         width: 20rem;
         padding-left: 8rem;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 800;
         option{
-            font-family: monospace;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
             
         }
 
@@ -163,8 +174,10 @@ const StyledSearch = styled.div`
 
 
 const StyledNav = styled.nav`
-        font-family: serif;
-        background-color: #fffffff1;
+        font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            background: linear-gradient(90deg, rgba(131,157,125,0.8911939775910365) 8%, rgba(143,149,126,0.7287289915966386) 92%);
+            border-radius: 10px;
         display: grid;
         grid-template-columns: 1fr;
         padding-left: 1rem;
@@ -173,9 +186,12 @@ const StyledNav = styled.nav`
         ul {
             display: flex;
             justify-content: space-between;
+            
         }
         li{
             list-style: none;
+            
+            
         }
         button {
             border: none;
@@ -183,11 +199,19 @@ const StyledNav = styled.nav`
             box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
             padding: 0.5rem;
             cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            text-decoration: none;
             
             
         }
+        a, a:hover, a:focus, a:active {
+      text-decoration: none;
+      color: inherit;
+ }
       button:hover {
-        background-color: #eaec7a;
+        background-color: #e2f3db;
+        
 }
 
         
