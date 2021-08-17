@@ -20,7 +20,12 @@ export default function Paginado({ recipesPerPage, allRecipes, paginado }) {
     )
 }
 
-//--------- STYLED COMPONENTS
+
+
+
+
+
+//---------> STYLED COMPONENTS
 
 const StyledNav = styled.div`
   position: absolute;

@@ -75,3 +75,10 @@ export function getDetail (id) {
         }
     }
 }
+
+export function emptyDetail(){
+    return {
+        type: "EMPTY_DETAIL"
+        
+    }
+}

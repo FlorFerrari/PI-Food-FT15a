@@ -8,7 +8,7 @@ const Diet = require('../models/Diet');  */
 const { Recipe, Diet, recipe_diet} = require("../db.js");
 
 const { API_KEY, API_KEY2, API_KEY3 } = process.env; // ESTA BIEN ESTO???
-const api = API_KEY3;
+const api = API_KEY;
 
 const router = Router();
 
@@ -17,7 +17,7 @@ const router = Router();
 
 
 const getApiInfo = async () => {
-    const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${api}&addRecipeInformation=true`);
+    const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${api}&addRecipeInformation=true&number=30`);
     const apiInfo = await apiUrl.data.results.map(e => {
         return {
             id: e.id,

@@ -1,31 +1,35 @@
 import React, { Fragment } from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes, filterRecipesByDiet, orderByName } from "../actions";
+import { getRecipes, filterRecipesByDiet, orderByName, emptyDetail } from "../actions";
 import { Link } from "react-router-dom"
 import Card from "./Card";
 import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
-import Detail from "./Detail";
-
 import styled from "styled-components";
-//import s from "../styles/Home.module.css";
 
 
 export default function Home() {
 
     const dispatch = useDispatch();
+    const detail = useSelector((state) => state.detail)
+
     const allRecipes = useSelector((state) => state.recipes)
+
+
     //paginado
-    const [currentPage, setCurrentPage] = useState(1);
-    const [recipesPerPage, setRecipesPerPage] = useState(6);
+    const [currentPage, setCurrentPage] = useState(1); //Comenzamos con pagina 1
+    const [recipesPerPage] = useState(6); //6 por pagina
+
+    //get currenT posts
     const indexOfLastRecipe = currentPage * recipesPerPage
     const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage
+    const currentRecipes = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe) //6
 
-    const currentRecipes = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe)
-
+    //Para filtrados
     const [orden, setOrden] = useState("")
-    //ayuda al renderizado
+
+    //Change page
     const paginado = (pageNumer) => {
         setCurrentPage(pageNumer)
     }
@@ -33,6 +37,11 @@ export default function Home() {
     useEffect(() => {
         dispatch(getRecipes())
     }, [dispatch])
+
+    useEffect(() => {
+        dispatch(emptyDetail())
+    }, [dispatch])
+
 
     function handleClick(e) {
         e.preventDefault();
@@ -69,6 +78,7 @@ export default function Home() {
                     <option value="2">Rating - High to Low</option>
                     <option value="desc">A-Z</option>
                     <option value="asc">Z-A</option>
+
                 </select>
                 <SearchBar />
                 <select onChange={e => handleFilterDiet(e)}>

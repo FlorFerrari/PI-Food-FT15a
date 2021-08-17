@@ -35,6 +35,11 @@ function rootReducer (state = initialState, action){
                         ...state,
                         diets: action.payload
                     }
+                    case "EMPTY_DETAIL":
+                    return {
+                        ...state,
+                        detail: []
+                    }
                 case "ORDER_BY_NAME":
                         if (action.payload === "desc") {
                             let sortedArr = state.recipes.sort(function(a,b){
@@ -69,10 +74,10 @@ function rootReducer (state = initialState, action){
  
                             if (action.payload === "1") {
                                 let sortedArr = state.recipes.sort(function(a,b){
-                                    if(a.healthScore > b.healthScore) {
+                                    if(a.rating > b.rating) {
                                         return 1
                                     }
-                                    if (b.healthScore > a.healthScore) {
+                                    if (b.rating > a.rating) {
                                         return -1
                                     }
                                     return 0;
@@ -82,12 +87,12 @@ function rootReducer (state = initialState, action){
                                     recipes: sortedArr
                                 }} 
 
-                            else if (action.payload ==="2") {
+                             else if (action.payload ==="2") {
                                     let sortedArr = state.recipes.sort(function(a,b){
-                                        if(a.healthScore > b.healthScore) {
+                                        if(a.rating > b.rating) {
                                             return -1
                                         }
-                                        if (b.healthScore > a.healthScore) {
+                                        if (b.rating > a.rating) {
                                             return 1
                                         }
                                         return 0;
@@ -96,6 +101,7 @@ function rootReducer (state = initialState, action){
                                         ...state,
                                         recipes: sortedArr
                                     }} 
+                                    
                         
                     case "GET_DETAIL":
                         return {

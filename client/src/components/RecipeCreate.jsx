@@ -7,7 +7,10 @@ import styled from "styled-components";
 function validate(input) {
     let errors = {};
     if (!input.title) {
-        errors.name = "Title required"
+        errors.name = "Title is required"
+    }
+    if (!input.summary) {
+        errors.summary = "Summary is required"
     }
     return errors;
 }
@@ -25,7 +28,7 @@ export default function RecipeCreate() {
         title: "",
         summary: "",
         rating: "5",
-        healthScore: "5",
+        healthScore: "50",
         steps: "",
         image: "",
         diets: []
@@ -87,9 +90,7 @@ export default function RecipeCreate() {
         })
     }
 
-    /*   useEffect(() => {
-          dispatch(getDietTypes());
-      }, []); */
+
 
     return (
         <Container>
@@ -119,6 +120,10 @@ export default function RecipeCreate() {
                         onChange={(e) => handleChange(e)}
                     />
                 </div>
+
+                {errors.summary && (
+                    <p>{errors.summary}</p>
+                )}
                 <div>
                     <label>Rating: </label>
                     <input type="range"
@@ -160,7 +165,7 @@ export default function RecipeCreate() {
                     <label><input type="checkbox" name="diets" value="9" id="9" onChange={(e) => handleCheck(e)} />Primal</label>
                     <label><input type="checkbox" name="diets" value="10" id="10" onChange={(e) => handleCheck(e)} />Whole30</label>
                 </div>
-                <button type="submit"  >Create</button>
+                <button type="submit" disabled={!input.title || !input.summary} >Create</button>
             </StyleForm>
         </Container >
     )
