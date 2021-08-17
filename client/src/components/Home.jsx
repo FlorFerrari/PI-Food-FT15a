@@ -72,7 +72,7 @@ export default function Home() {
                 </select>
                 <SearchBar />
                 <select onChange={e => handleFilterDiet(e)}>
-                    <option value="Diet type"> Diet type</option>
+                    <option value="All"> Diet type</option>
                     <option value="gluten free">Gluten Free</option>
                     <option value="ketogenic">Ketogenic</option>
                     <option value="">Vegetarian</option>
