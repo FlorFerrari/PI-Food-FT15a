@@ -18,14 +18,14 @@ export default function RecipeCreate() {
     const dispatch = useDispatch()
     const diets = useSelector(state => state.diets)
     const [errors, setErrors] = useState({
-        title: "Name is required",
+
     })
 
     const [input, setInput] = useState({
         title: "",
         summary: "",
-        rating: "1",
-        healthScore: "1",
+        rating: "5",
+        healthScore: "5",
         steps: "",
         image: "",
         diets: []
