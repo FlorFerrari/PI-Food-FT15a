@@ -29,31 +29,32 @@ export default function Detail(props) {
             {
                 detail.length > 0 ?
                     <StyledContainer>
-                        <div>
-                            <button><Link to="/home">go back</Link></button>
+                        <StyledDiv_1>
+                            <Link to="/home">Home</Link>
                             {typeof (detail[0].diets[0]) === "string" ? detail[0].diets.map(e => <button>{e}</button>) : detail[0].diets.map(e => <button>{e.name}</button>)}
-                        </div>
+                        </StyledDiv_1>
 
 
 
-                        <div>
+                        <StyledDiv_2>
                             <div>
                                 <h1>{detail[0].title}</h1>
-                                <img src={detail[0].image ? detail[0].image : "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/4353c586-8637-4645-86bb-201136ab461d/dcywcin-2a161519-7290-4244-ade5-ce1771a84626.png/v1/fill/w_1600,h_1600,strp/just_a_happy_potato_by_leuldeaur_dcywcin-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTYwMCIsInBhdGgiOiJcL2ZcLzQzNTNjNTg2LTg2MzctNDY0NS04NmJiLTIwMTEzNmFiNDYxZFwvZGN5d2Npbi0yYTE2MTUxOS03MjkwLTQyNDQtYWRlNS1jZTE3NzFhODQ2MjYucG5nIiwid2lkdGgiOiI8PTE2MDAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.3-SOlTK3WVpkvkTOOdloRcmakeBO6AnygB6JC62N4JE"} alt="Food" />
+                                <img src={detail[0].image ? detail[0].image : "https://cdn2.tmbi.com/TOH/Images/articles/shutterstock_301882538_750x420.jpg"} alt="Food" />
                             </div>
-                            <h5>Steps:</h5>
-                            <h4>{typeof (detail[0].steps[0]) === "string" ? detail[0].steps : (detail[0].steps.steps.map(e => e.number + ") " + e.step + " "))}</h4>
                             <div dangerouslySetInnerHTML={{ __html: detail[0].summary }} />
-                        </div>
+                            <h3>Steps:</h3>
+                            <h4>{typeof (detail[0].steps[0]) === "string" ? detail[0].steps : (detail[0].steps.steps.map(e => e.number + ") " + e.step + " "))}</h4>
 
-                        <div>
+                        </StyledDiv_2>
+
+                        <StyledDiv_3>
                             <div>
                                 Health Score: {detail[0].healthScore}
                             </div>
                             <div>
                                 Rating: {detail[0].rating}
                             </div>
-                        </div>
+                        </StyledDiv_3>
 
 
                     </StyledContainer> : <div>Loading...</div>
@@ -71,7 +72,7 @@ export default function Detail(props) {
 
 //----------STYLED COMPONENTS
 const StyledContainer = styled.div`
-    background-color: chocolate;
+    background-color: #ffffff;
     height: 100vh;
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
@@ -79,6 +80,98 @@ const StyledContainer = styled.div`
     grid-template-columns: 1fr 3fr 1fr;
   
 `;
+
+const StyledDiv_1 = styled.div`
+background-color: #eed9b9;
+height: 50vh;
+display: flex;
+flex-direction: column;
+justify-content: space-evenly;
+padding: 4rem;
+width: 5rem;
+box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.4);
+text-align: center;
+border-radius: 1rem;
+margin-left: 7rem;
+margin-top: 10rem;
+
+a, a:focus, a:active {
+    position: absolute;
+    top: 5rem;
+    left: 11rem;
+    text-decoration: none;
+    color: black;
+    background-color: #7bdd88;
+    padding: 1rem;
+    border-radius: 10px;
+    
+}
+a:hover {
+    color: #3d6d0d;
+    
+}
+
+
+
+button {
+    border: none;
+            border-radius: 10px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            padding: 0.5rem;
+            background-color: #eaf3e1;
+}
+    
+  
+`;
+const StyledDiv_2 = styled.div`
+background-color: #eaf3e1;
+display: flex;
+flex-direction: column;
+justify-content: center;
+height: fit-content;
+
+box-shadow: 0px 19px 50px rgba(0, 0, 0, 0.3);
+text-align: center;
+border-radius: 1rem;
+cursor: pointer;
+margin: 5rem 2rem 2rem 2rem;
+padding: 0rem 2rem 2rem 2rem;
+cursor: default;
+
+    img {
+    width: 100%;
+    height: 22vh;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    }
+
+    
+`;
+
+const StyledDiv_3 = styled.div`
+background-color: #eed9b9;
+height: 50vh;
+display: flex;
+flex-direction: column;
+justify-content: space-evenly;
+padding: 4rem;
+width: 5rem;
+box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.4);
+text-align: center;
+border-radius: 1rem;
+margin-right: 4rem;
+margin-top: 10rem;
+div {
+    border: none;
+            border-radius: 10px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            padding: 0.5rem;
+            background-color: #eaf3e1;
+}
+    
+  
+`;
+
 
 
 

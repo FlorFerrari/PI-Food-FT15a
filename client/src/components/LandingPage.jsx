@@ -9,6 +9,7 @@ export default function LandingPage() {
             <div>
 
                 <Link to="/home"><button>Explore</button></Link>
+
             </div>
         </Contenedor>
     )
@@ -21,6 +22,7 @@ const Contenedor = styled.div`
     background-size: cover;
     display: flex;
     justify-content: center;
+   
     div {
         align-self: center;
         

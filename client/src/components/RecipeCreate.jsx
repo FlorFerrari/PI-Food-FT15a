@@ -12,6 +12,9 @@ function validate(input) {
     if (!input.summary) {
         errors.summary = "Summary is required"
     }
+    if (!input.steps) {
+        errors.steps = "Steps are required"
+    }
     return errors;
 }
 
@@ -45,6 +48,7 @@ export default function RecipeCreate() {
             ...input,
             [e.target.name]: e.target.value
         }))
+
         console.log(input)
     }
 
@@ -152,6 +156,9 @@ export default function RecipeCreate() {
                         onChange={(e) => handleChange(e)}
                     />
                 </div>
+                {errors.steps && (
+                    <p>{errors.steps}</p>
+                )}
 
                 <div>
                     <label><input type="checkbox" name="diets" value="1" id="1" onChange={(e) => handleCheck(e)} />Gluten Free</label>
@@ -165,7 +172,7 @@ export default function RecipeCreate() {
                     <label><input type="checkbox" name="diets" value="9" id="9" onChange={(e) => handleCheck(e)} />Primal</label>
                     <label><input type="checkbox" name="diets" value="10" id="10" onChange={(e) => handleCheck(e)} />Whole30</label>
                 </div>
-                <button type="submit" disabled={!input.title || !input.summary} >Create</button>
+                <button type="submit" disabled={!input.title || !input.summary || !input.steps} >Create</button>
             </StyleForm>
         </Container >
     )
@@ -182,10 +189,11 @@ const StyleForm = styled.form`
 font-family: 'Montserrat', sans-serif;
             font-weight: 800;
             
-            background-color: #bec9ba;
+            
+            background-color: #c9e4c0;
             min-height: 10vh;
             max-height: 80vh;
-            height: 60vh;
+            height: 50vh;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             font-size: 12px;
             box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
@@ -210,7 +218,10 @@ font-family: 'Montserrat', sans-serif;
             font-weight: 800;
             }
             
-            
+            p {
+                color: red;
+                font-family: 'Montserrat', sans-serif;
+            }
             
 `;
 

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { getDetail } from "../actions";
 
 
-export default function Card({ title, image, diets, id }) {
+export default function Card({ title, image, diets, createdInDb }) {
 
     /* const dispatch = useDispatch();
     const loadDetailHandler = () => {
