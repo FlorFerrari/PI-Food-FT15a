@@ -8,7 +8,7 @@ const Diet = require('../models/Diet');  */
 const { Recipe, Diet, recipe_diet} = require("../db.js");
 
 const { API_KEY, API_KEY2, API_KEY3 } = process.env; // ESTA BIEN ESTO???
-const api = API_KEY;
+const api = API_KEY2;
 
 const router = Router();
 
@@ -27,6 +27,7 @@ const getApiInfo = async () => {
             summary: e.summary,
             healthScore: e.healthScore,
             rating: e.spoonacularScore,
+            steps: e.analyzedInstructions[0]
             
         } 
         
@@ -89,6 +90,8 @@ router.get("/myrecipes", async (req, res) => {
 //Incluir los tipos de dieta asociados
 router.get("/recipes/:id", async (req, res) => {
     const {id} = req.params;
+    
+    try {
     const recipesTotal = await getAllRecipes();
     
     if(id){
@@ -97,6 +100,13 @@ router.get("/recipes/:id", async (req, res) => {
         res.status(200).json(recipeId) :
         res.status(404).send("Recipe not found")
     }
+
+        
+    } catch(error) {
+        console.error(error)
+        res.send("Recipe not found :(")
+    }
+    
 })
 
 
@@ -104,10 +114,16 @@ router.get("/recipes/:id", async (req, res) => {
 //3) GET /types:  -------- Obtener todos los tipos de dieta posibles   
 //En una primera instancia, cuando no exista ninguno, deberán precargar la base de datos con los tipos de datos indicados por spoonacular acá
 router.get("/types", async (req, res) => {
-    const dietas = await Diet.findAll();
-    const dietasMap = dietas.map( e => e.name)
+    try {
+        const dietas = await Diet.findAll();
+        const dietasMap = dietas.map( e => e.name)
     
     res.status(200).send(dietasMap)
+    } catch(error) {
+        console.error(error)
+        res.status(404).send("Error")
+    }
+    
 })
 
 
@@ -139,6 +155,7 @@ router.post("/recipe", async (req, res) => {
     res.send(newRecipe);
   } catch (error) {
     console.log(error);
+    res.send("Something went wrong")
   }
 
 
