@@ -6,6 +6,7 @@ import { getDetail } from "../actions/index";
 
 
 import styled from "styled-components";
+import img from "../images/home.png"
 
 export default function Detail(props) {
 
@@ -72,17 +73,21 @@ export default function Detail(props) {
 
 //----------STYLED COMPONENTS
 const StyledContainer = styled.div`
-    background-color: #ffffff;
+    
     height: 100vh;
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
+    background-image: url(${img});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 95%;
   
 `;
 
 const StyledDiv_1 = styled.div`
-background-color: #eed9b9;
+background-color: #01aca95a;
 height: 50vh;
 display: flex;
 flex-direction: column;
@@ -101,13 +106,14 @@ a, a:focus, a:active {
     left: 11rem;
     text-decoration: none;
     color: black;
-    background-color: #7bdd88;
+    background-color: #01aca965;
     padding: 1rem;
     border-radius: 10px;
     
 }
 a:hover {
-    color: #3d6d0d;
+    
+    background-color: #01aca9d5;
     
 }
 
@@ -149,7 +155,7 @@ cursor: default;
 `;
 
 const StyledDiv_3 = styled.div`
-background-color: #eed9b9;
+background-color: #01aca95a;
 height: 50vh;
 display: flex;
 flex-direction: column;

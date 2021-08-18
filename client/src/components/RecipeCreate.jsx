@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { postRecipe, getDietTypes, getRecipes } from "../actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import img from "../images/recipecreate.png"
 
 function validate(input) {
     let errors = {};
@@ -190,7 +191,7 @@ font-family: 'Montserrat', sans-serif;
             font-weight: 800;
             
             
-            background-color: #c9e4c0;
+            background-color: #01aca95a;
             min-height: 10vh;
             max-height: 80vh;
             height: 50vh;
@@ -261,14 +262,18 @@ const Container = styled.div`
 font-family: 'Montserrat', sans-serif;
             font-weight: 800;
 padding: 0rem 9rem;
-background: linear-gradient(90deg, rgba(131,157,125,0.8911939775910365) 8%, rgba(143,149,126,0.7287289915966386) 92%);
+
 height: 98vh;
+
+    background-image: url(${img});
+    background-size: cover;
+    background-position-y: -5.5rem;
 h1{
     margin-left: 38%
 }
 
 button:hover {
-            background-color: #e2f3db;
+            background-color: #01ACAA;
         }
         label{
             font-family: 'Montserrat', sans-serif;

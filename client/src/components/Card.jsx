@@ -37,18 +37,21 @@ export default function Card({ title, image, diets, createdInDb }) {
 
 
 const StyledContainer = styled.div`
-  background-color: #e2f3db;
+  
   border-radius: 10px;
   
   display: flex;
   
   justify-content: center;
-  gap: 10px;
+  
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 5px;
   position: relative;
-  top: -1px;
+  top: -9px;
+  h5{
+      padding: 1px;
+  }
   
 `;
 

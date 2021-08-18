@@ -7,6 +7,7 @@ import Card from "./Card";
 import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
 import styled from "styled-components";
+import img from "../images/home.png"
 
 
 export default function Home() {
@@ -129,11 +130,14 @@ export default function Home() {
 
 
 const Container = styled.div`
-  padding: 0rem 9rem;
-  
-  height: 100vh;
-  font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
+padding: 0rem 9rem;
+height: 100vh;
+font-family: 'Montserrat', sans-serif;
+font-weight: 800;
+background-image: url(${img});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 95%;
   
 `;
 
@@ -187,7 +191,7 @@ const StyledSearch = styled.div`
 const StyledNav = styled.nav`
         font-family: 'Montserrat', sans-serif;
             font-weight: 800;
-            background: linear-gradient(90deg, rgba(131,157,125,0.8911939775910365) 8%, rgba(143,149,126,0.7287289915966386) 92%);
+            background: #01aca95a;
             border-radius: 10px;
         display: grid;
         grid-template-columns: 1fr;

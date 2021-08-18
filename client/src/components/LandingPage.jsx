@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import img from "../images/imagen1.jpg"
+import img from "../images/landing.png"
 
 export default function LandingPage() {
     return (
@@ -19,7 +19,9 @@ export default function LandingPage() {
 const Contenedor = styled.div`
     height: 98vh;
     background-image: url(${img});
-    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 95%;
     display: flex;
     justify-content: center;
    
@@ -34,9 +36,9 @@ const Contenedor = styled.div`
             padding: 0.5rem;
             cursor: pointer;
             position: relative;
-            left: -35rem;
-            top: 7rem;
-            width: 17rem;
+            left: -5.4rem;
+            top: 12rem;
+            width: 11rem;
             font-family: 'Montserrat', sans-serif;
             font-weight: 800;
             
