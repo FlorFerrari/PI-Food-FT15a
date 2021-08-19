@@ -91,9 +91,9 @@ export default function Home() {
                     <option value="lacto ovo vegetarian">Lacto-Vegetarian</option>
                     <option value="lacto ovo vegetarian">Ovo-Vegetarian</option>
                     <option value="vegan">Vegan</option>
-                    <option value="pescetarian">Pescetarian</option>
-                    <option value="paleo">Paleo</option>
-                    <option value="Primal">Primal</option>
+                    <option value="pescatarian">Pescetarian</option>
+                    <option value="paleolithic">Paleo</option>
+                    <option value="primal">Primal</option>
                     <option value="whole30">Whole30</option>
                 </select>
             </StyledSearch>

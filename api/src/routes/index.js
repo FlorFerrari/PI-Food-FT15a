@@ -7,8 +7,8 @@ const axios = require("axios");
 const Diet = require('../models/Diet');  */
 const { Recipe, Diet, recipe_diet} = require("../db.js");
 
-const { API_KEY, API_KEY2, API_KEY3, API_KEY4, API_KEY5 } = process.env; // ESTA BIEN ESTO???
-const api = API_KEY5;
+const { API_KEY, API_KEY2, API_KEY3, API_KEY4, API_KEY5, API_KEY6, API_KEY7, API_KEY8, API_KEY9, API_KEY10 } = process.env; // ESTA BIEN ESTO???
+const api = API_KEY8;
 
 const router = Router();
 

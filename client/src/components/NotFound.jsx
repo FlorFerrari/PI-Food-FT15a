@@ -1,27 +1,30 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 import styled from "styled-components";
-import img from "../images/landing.png"
+import img from "../images/notfound.png"
 
-export default function LandingPage() {
+
+export default function NotFound() {
+
     return (
+
         <Contenedor >
             <div>
 
-                <Link to="/home"><button>Explore</button></Link>
+                <Link to="/home"><button>Go back home</button></Link>
 
             </div>
         </Contenedor>
-    )
-};
 
+    )
+}
 
 const Contenedor = styled.div`
     height: 98vh;
     background-image: url(${img});
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 95%;
+    background-size: 100%;
     display: flex;
     justify-content: center;
    
@@ -36,8 +39,8 @@ const Contenedor = styled.div`
             padding: 0.5rem;
             cursor: pointer;
             position: relative;
-            left: -5.4rem;
-            top: 12rem;
+            left: -20rem;
+            top: 5rem;
             width: 11rem;
             font-family: 'Montserrat', sans-serif;
             font-weight: 800;

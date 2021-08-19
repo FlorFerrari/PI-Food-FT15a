@@ -27,7 +27,7 @@ export function getNameRecipes(name) {
             payload: json.data
         })
     } catch (error) {
-        console.log(error)
+        console.log("receta no encontrada")
     }
 }}
 
